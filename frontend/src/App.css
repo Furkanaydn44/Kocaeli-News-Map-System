@@ -1,0 +1,94 @@
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+.app-body {
+  flex: 1;
+  position: relative;
+  margin-left: 280px;
+  margin-top: 56px;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 9999;
+  background: var(--bg-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+.loading-logo {
+  font-size: 48px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.loading-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: 'Manrope', sans-serif;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 3px;
+  background: var(--bg-surface);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-bar-inner {
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, var(--primary-dim), var(--primary));
+  border-radius: 3px;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  padding: 14px 20px;
+  border-radius: var(--radius-lg);
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideInRight 0.3s ease forwards;
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+}
+
+.toast-success {
+  background: rgba(6, 95, 70, 0.9);
+  color: #a7f3d0;
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+.toast-error {
+  background: rgba(127, 29, 29, 0.9);
+  color: #fecaca;
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.toast-info {
+  background: rgba(15, 25, 48, 0.9);
+  color: var(--primary);
+  border-color: rgba(155, 168, 255, 0.2);
+}

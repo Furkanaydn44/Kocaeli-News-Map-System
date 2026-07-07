@@ -1,0 +1,30 @@
+# Bağımlılıklar
+node_modules/
+
+# Ortam değişkenleri (GİZLİ - kesinlikle commit etme!)
+.env
+.env.local
+.env.*.local
+
+# Log dosyaları
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Geçici analiz dosyaları
+analyze.txt
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+
+# Editor dosyaları
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Model cache (büyük dosyalar - @xenova/transformers)
+.cache/
+models/cache/

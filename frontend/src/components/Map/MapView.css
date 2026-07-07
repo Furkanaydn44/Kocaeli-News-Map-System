@@ -1,0 +1,442 @@
+.map-container {
+  position: fixed;
+  top: 80px;
+  left: 280px;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+/* ── Custom Zoom Controls ─────────────────────────── */
+.custom-zoom-controls {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.custom-zoom-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-zoom-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.custom-zoom-btn:hover {
+  transform: scale(1.25) rotate(-5deg);
+}
+
+/* ── Persona 5 Pin Markers ────────────────────────── */
+.persona5-pin-container {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.25s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.persona5-pin-container:hover {
+  transform: scale(1.25) translateY(-4px);
+  filter: drop-shadow(0 8px 16px rgba(200, 0, 0, 0.4));
+}
+
+.persona5-pin-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.persona5-pin-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #e00;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 2px 6px rgba(200, 0, 0, 0.6);
+}
+
+/* Badge overlay for google.maps.OverlayView */
+.persona5-pin-badge-overlay {
+  background: #e00;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 2px 6px rgba(200, 0, 0, 0.6);
+  pointer-events: none;
+  padding: 0 4px;
+}
+
+/* ── Persona 5 Info Window (Custom Overlay) ───────── */
+.persona-info-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.2s ease;
+}
+
+.persona-info-window {
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding: 40px 48px;
+  min-width: 320px;
+  max-width: 400px;
+  filter: drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.5));
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.persona-info-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.persona-info-close:hover {
+  color: var(--error, #ef4444);
+}
+
+/* ── Info Window Content Styles ───────────────────── */
+.info-window {
+  min-width: 260px;
+  max-width: 340px;
+  font-family: 'Inter', sans-serif;
+}
+
+.info-window-multi-notice {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 11px;
+  padding: 6px 16px;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-window-header {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-window-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.info-window-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.info-window-body {
+  padding: 12px 18px;
+}
+
+.info-window-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.info-window-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-window-sources {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.info-window-source-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.info-window-footer {
+  padding: 12px 18px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.info-window-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #ffffff;
+  color: #000000 !important;
+  border: none;
+  border-radius: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.info-window-btn:hover {
+  background: #cccccc;
+  transform: scale(1.2) translateY(-2px) rotate(3deg);
+  box-shadow: 8px 8px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Pagination controls */
+.info-window-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  padding: 6px;
+}
+
+.info-window-pagination button {
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 2px 10px;
+  transition: all 0.2s ease;
+}
+
+.info-window-pagination button:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.35) rotate(-5deg);
+}
+
+.info-window-pagination span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ── Floating Bottom Controls - Persona 5 Style ───── */
+.map-bottom-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  background-color: transparent;
+  background-size: 130% 240%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 40px 80px 30px 100px;
+  border: none;
+  box-shadow: none;
+  z-index: 500;
+  animation: slideInUp 0.5s ease 0.2s both;
+  min-width: 560px;
+  min-height: 90px;
+  border-radius: 0;
+}
+
+.map-bottom-section {
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+}
+
+.map-bottom-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.map-bottom-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.map-bottom-select {
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.map-bottom-select option {
+  background: var(--bg-surface-highest);
+  color: var(--text-primary);
+}
+
+.map-bottom-divider {
+  width: 2px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.map-bottom-date-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-bottom-date {
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  width: 110px;
+  padding: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.map-bottom-date::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+  cursor: pointer;
+}
+
+.map-bottom-date-separator {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Animations ───────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ── Google Maps overrides ────────────────────────── */
+.map-container .gm-style {
+  font-family: 'Inter', sans-serif !important;
+}
+
+
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .map-container {
+    left: 0;
+    top: 80px;
+  }
+
+  .map-bottom-bar {
+    width: calc(100% - 32px);
+    flex-wrap: wrap;
+    justify-content: center;
+    bottom: 16px;
+  }
+}
