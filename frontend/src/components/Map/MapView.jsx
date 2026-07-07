@@ -15,7 +15,7 @@ import textboxBg from '../../assets/map/textbox.png';
 import zoomInImg from '../../assets/map/zoom/zoomin.png';
 import zoomOutImg from '../../assets/map/zoom/zoomout.png';
 
-const GOOGLE_MAPS_API_KEY = 'REDACTED_GOOGLE_MAPS_API_KEY';
+const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const KOCAELI_CENTER = { lat: 40.7654, lng: 29.9408 };
 
 // Pin mapping by category
