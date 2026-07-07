@@ -100,10 +100,6 @@ npm run dev
 - Özgür Kocaeli
 - Bizim Yaka
 
-## 👥 Geliştirici
-
-- **230202101** & **230202071**
-
 ---
 
 > **Not:** `.env` dosyaları repoya dahil değildir. Kurulum için `.env.example` dosyalarını kullanın.
@@ -213,11 +209,7 @@ npm run dev
 - Ses Kocaeli
 - Özgür Kocaeli
 - Bizim Yaka
-
-## 👥 Developers
-
-- **230202101** & **230202071**
-
+  
 ---
 
 > **Note:** `.env` files are not included in the repository. Use the `.env.example` files as a template for setup.
