@@ -2,6 +2,14 @@
 
 Kocaeli'deki yerel haber sitelerini otomatik olarak tarayan, haberlerin geçtiği konumları tespit eden ve bu haberleri interaktif bir harita üzerinde görselleştiren full-stack bir web uygulaması.
 
+## Proje Katılımcıları
+<a href="https://github.com/numankhy28">
+  <img src="https://avatars.githubusercontent.com/u/219421415?v=4" width="128" height="128" alt="numankhy28 GitHub Profile" />
+</a>
+<a href="https://github.com/Furkanaydn44">
+  <img src="https://avatars.githubusercontent.com/u/174454978?v=4" width="128" height="128" alt="Furkanaydn44 GitHub Profile" />
+</a>
+
 ## 📋 Özellikler
 
 - 🔍 **Otomatik Web Scraping** — 5 farklı Kocaeli haber kaynağından haber çekme
